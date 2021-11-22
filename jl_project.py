@@ -48,7 +48,7 @@ def compute_jl_projection(V, epsilon):
     print(mismatches)
 
   print(f"Projection found after {iterator} iterations.")
-  return proj
+  return k, proj
 
 def compute_distances(M):
   """Computes the squared Euclidean distance between each pair of points in M,
