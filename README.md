@@ -33,4 +33,6 @@ epsilon = 0.1
 
 # Run the algorithm
 k, projected_pts = compute_jl_projection(pts, epsilon)
+print(k)
+>> 36
 ```
