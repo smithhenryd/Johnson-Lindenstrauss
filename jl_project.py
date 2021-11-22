@@ -30,8 +30,6 @@ def compute_jl_projection(V, epsilon):
   iterator = 0
 
   while mismatches:
-    # Count the number of iterations we have completed
-    iterator += 1
 
     # Generate our [random] projection matrix
     A = (1/np.sqrt(k))*np.random.normal(0, 1, (k, d))
@@ -44,8 +42,6 @@ def compute_jl_projection(V, epsilon):
 
     # Compute the number of points that *do not* satisfy the desired distance distortion property
     mismatches = n**2 - np.sum(np.logical_and(proj_distances >= (1 - epsilon)*orig_distances,  proj_distances <= (1 + epsilon)*orig_distances))
-
-    print(mismatches)
 
   print(f"Projection found after {iterator} iterations.")
   return k, proj
