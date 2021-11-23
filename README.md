@@ -19,7 +19,7 @@ The `compute_jl_projection` function expects two inputs:
 
 Note that smaller \epsilon implies greater preservation of the original \ell^2 distances between points in \mathbb{R}^d.
 
-`compute_jl_projection` returns a tuple containing
+`compute_jl_projection` returns a tuple containing:
 
 1. The dimension k of the subspace onto which we are projecting the vectors in \mathbb{R}^d
 2. The vectors in \mathbb{R}^k which preserve the \ell^2 distances between the original vectors up to a factor of \epsilon
