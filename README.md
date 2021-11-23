@@ -15,7 +15,7 @@ import numpy as np
 The `compute_jl_projection` function expects two inputs: 
 
 1. a numpy ndarray whose rows are vectors in \mathbb{R}^d
-2. a value of \epsilon \in (0,1) which controls the algorithm's tolerance for distance distortion in the lower-dimensional space \mathbb{R}^k
+2. a value of \epsilon \in (0,1) which controls the algorithm's tolerance for distance distortion in the lower-dimensional space \mathbb{R}^k; for more, [see here](https://en.wikipedia.org/wiki/Johnson%E2%80%93Lindenstrauss_lemma)
 
 Note that smaller \epsilon implies greater preservation of the original \ell^2 distances between points in \mathbb{R}^d.
 
