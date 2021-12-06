@@ -3,7 +3,6 @@
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
 
-
 % Formatting and images 
 \usepackage[utf8]{inputenc}
 \usepackage[margin=1in]{geometry}
@@ -108,12 +107,12 @@ Consider the vectors $A_i \in \mathbb{R}^d$, $1 \le i \le k$, defined to have en
         \right]
 \end{align*}
 
-With this random matrix $\mathbb{A} \in \mathbb{R}^{k \times n}$, we construct the map $f: \mathbb{R}^d \rightarrow \mathbb{R}^k$ defined $f(x) := \frac{1}{\sqrt{k}}\mathbb{A}$ for $x \in \mathbb{R}^d$.
+With this random matrix $\mathbb{A} \in \mathbb{R}^{k \times n}$, we construct the map $f: \mathbb{R}^d \rightarrow \mathbb{R}^k$ defined $f(x) := \frac{1}{\sqrt{k}}\mathbb{A}x$ for $x \in \mathbb{R}^d$.
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{imgs/random_projections.png}
-        \caption{The projection of $n = 50$ random points in $\mathbb{R}^3$ onto a two-dimensional hyperplane determined by the random Gaussian vectors $A_1, A_2 \in \mathbb{R}^3$. Note that $\mathbb{A} \in \mathbb{R}^{k \times d}$ is the \textit{orthogonal projection matrix} corresponding to some $k$-dimensional subspace $\mathcal{S}$ of $\mathbb{R}^k$; that is, $f(u) = \mathbb{A}u$ maps each vector $u \in \mathbb{R}^d$ to its orthogonal projection onto $\mathcal{S}$.}
+        \caption{The projection of $n = 50$ random points in $\mathbb{R}^3$ onto a two-dimensional hyperplane determined by the random Gaussian vectors $A_1, A_2 \in \mathbb{R}^3$. Note that $\frac{1}{\sqrt{k}} \mathbb{A} \in \mathbb{R}^{k \times d}$ is the \textit{orthogonal projection matrix} corresponding to some $k$-dimensional subspace $\mathcal{S}$ of $\mathbb{R}^d$; that is, $f(u) = \frac{1}{\sqrt{k}}\mathbb{A}u$ maps each vector $u \in \mathbb{R}^d$ to its orthogonal projection onto $\mathcal{S}$.}
     \end{figure}
     
     \subsection{The Distribution of $f(u) \in \mathbb{R}^k$}
@@ -156,14 +155,15 @@ With this random matrix $\mathbb{A} \in \mathbb{R}^{k \times n}$, we construct t
          \mathbb{E}(\left\Vert y \right\Vert^2) &= \mathbb{E} \left(\sum_{i=1}^k y_i^2\right)\\
          &= \mathbb{E} \left(\sum_{i=1}^k \left( \sum_{j=1}^d \frac{u_j}{\sqrt{k}}A_{i,j} \right)^2\right) &\text{def. of $y = f(u)$}\\
          &= \frac{1}{k} \mathbb{E} \left(\sum_{i=1}^k \left( \sum_{j=1}^d u_j A_{i,j} \right)^2\right) &\text{linearity of expectation}\\
-         &= \frac{1}{k} \sum_{i=1}^k \mathbb{E} (u_iA_{i,1} + \ldots + u_dA_{i,d}) \cdot (u_iA_{i,1} + \ldots + u_dA_{i,d}).
+         &= \frac{1}{k} \sum_{i=1}^k \mathbb{E} (u_1A_{i,1} + \ldots + u_dA_{i,d}) \cdot (u_1A_{i,1} + \ldots + u_dA_{i,d}).
      \end{align*}
      
-     Now, since $A_{i,k_1}, A_{i,k_2}$ are independent for $k_1 \neq k_2$, then $\mathbb{E}(u_{k_1}u_{k_2}A_{i,k_1}A_{i,k_2}) = u_{k_1}u_{k_2} \mathbb{E}(A_{i,k_1}A_{i,k_2}) = 0$ whenever $k_1 \neq k_2$. This allows us to simplify our expression for $\mathbb{E}(\left\Vert y \right\Vert^2)$ as follows:
+     Now, since $A_{i,k_1}, A_{i,k_2}$ are independent for $k_1 \neq k_2$, then $\mathbb{E}(u_{k_1}u_{k_2}A_{i,k_1}A_{i,k_2}) = u_{k_1}u_{k_2} \mathbb{E}(A_{i,k_1}A_{i,k_2}) = u_{k_1}u_{k_2} \mathbb{E}(A_{i,k_1})\mathbb{E}(A_{i,k_2}) = 0$ whenever $k_1 \neq k_2$. This allows us to simplify our expression for $\mathbb{E}(\left\Vert y \right\Vert^2)$:
      \begin{align*}
-         &\frac{1}{k} \sum_{i=1}^k \mathbb{E} (u_iA_{i,1} + \ldots + u_dA_{i,d}) \cdot (u_iA_{i,1} + \ldots + u_dA_{i,d})\\
-         &= \frac{1}{k} \sum_{i=1}^k \sum_{j=1}^d \mathbb{E}(u_j^2 A_{j,j})\\
-         &= \frac{1}{k} \sum_{i=1}^k \sum_{j=1}^d u_j^2 \mathbb{E}(A_{j,j}) &\text{linearity of expectation}\\
+         &\frac{1}{k} \sum_{i=1}^k \mathbb{E} (u_1A_{i,1} + \ldots + u_dA_{i,d}) \cdot (u_1A_{i,1} + \ldots + u_dA_{i,d})\\
+         &= \frac{1}{k} \sum_{i=1}^k \sum_{j=1}^d \mathbb{E}(u_j^2 A_{j,j}^2)\\
+         &= \frac{1}{k} \sum_{i=1}^k \sum_{j=1}^d u_j^2 \mathbb{E}(A_{j,j}^2) &\text{linearity of expectation}\\
+         &= \frac{1}{k} \sum_{i=1}^k \sum_{j=1}^d u_j^2 \text{Var}(A_{j,j}) & \mathbb{E}(A_{j,j}) = 0\\
          &= \frac{1}{k} \sum_{i=1}^k \sum_{j=1}^d u_j^2 &A_{j,j} \sim \mathcal{N}(0,1)\\
          &= \frac{1}{k} \cdot k \sum_{j=1}^d u_j^2\\
          &= \left\Vert u \right\Vert^2.
@@ -188,7 +188,7 @@ To substantiate our prior observation about the distribution of $\left \Vert y \
     \end{align*}
 \end{theorem}
 
-This means the probability that $\left\Vert y \right\Vert^2$ is more than a factor of $\epsilon$ from $\left\Vert u \right\Vert^2$ is less than or equal to $\frac{2}{n}$.
+This means the probability that $\left\Vert y \right\Vert^2$ is more than a factor of $\epsilon$ from $\left\Vert u \right\Vert^2$ is less than or equal to $\frac{2}{n^2}$.
 
 \begin{proof}
 
@@ -417,7 +417,7 @@ Overall, your use of dimensional reduction algorithm should depend on your speci
         &=P(X \leq F_X^{-1}(y))\\
         &=F_X(F_X^{-1}(y))=y.
     \end{align*}
-    This matches the CDF of the $\text{Uniform}(0,1)$ distribution: $Y \sim \text{Uniform}(0,1)$. Thus, if we wanted to go the other direction, it necessarily follows that $X = F_X^{-1}(Y)$ has a $N(0,1)$ distribution where $F_X(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}dt.$ This process can be used to generate each $A_{ij}$ which in turn will generate all of $\mathbb{A}$ as desired.
+    This matches the CDF of the $\text{Uniform}(0,1)$ distribution: $Y \sim \text{Uniform}(0,1)$. Thus, if we wanted to go the other direction, it necessarily follows that $X = F_X^{-1}(Y)$ has a $\mathcal{N}(0,1)$ distribution where $F_X(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}dt.$ This process can be used to generate each $A_{ij}$ which in turn will generate all of $\mathbb{A}$ as desired.
     
     \subsection{The Moment-Generating Function (MGF) of $\chi^2_n$}
 Our results are made easier by finding the MGF of the $\chi_n^2$ distribution for any finite $n$. We will derive the result here. Notice by definition that if $Z \sim \chi^2_n$, then $Z = \sum_{i=1}^n Z_i^2$ where each $Z_i \overset{iid}{\sim} \mathcal{N}(0,1)$. Then 
