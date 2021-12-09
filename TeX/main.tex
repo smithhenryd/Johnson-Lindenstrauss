@@ -69,7 +69,7 @@
 In 1984, Johnson and Lindenstrauss published their seminal result regarding the random embedding of high-dimensional [Euclidean] data in lower-dimensional space. William Johnson is an American mathematician and has held positions at the University of Houston, Ohio State University, and Texas A\&M University, where he is currently the chair of the mathematics department. He was award the Stefan Banach Medal for his achievement in mathematics by the Polish Academy of Sciences in 2007. Joram Lindenstrauss was an Israeli mathematician who obtained his Ph.D. from the Hebrew University of Jerusalem in 1962. He thereafter worked as a postdoc at the Yale Mathematics department from 1962-1965. Two of his children went on to become mathematicians, and his son, Elon Lindenstrauss, was the first Israeli mathematician to win the Fields Medal in 2010. The Fields Medal was awarded for his work in ergodic theory and its applications to number theory. He now holds a professorship in the Princeton University Department of Mathematics.
 
 \subsection{Preliminaries}
-Let $\left\Vert \cdot \right\Vert$ denote the $\ell^2$ (Euclidean norm); we consider the Banach spaces $(\mathbb{R}^d, \left\Vert \cdot \right\Vert), (\mathbb{R}^k, \left\Vert \cdot \right\Vert)$ where $d > k$. Further, let $\mathcal{N}(0, 1)$ denote the standard normal distribution in $\mathbb{R}$ with density $f(x) = \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{x^2}{2} \right)$. Likewise let, $\mathcal{N}(\boldsymbol{0}, \mathbb{I}_p)$ denote the standard multivariate normal distribution in $\mathbb{R}^p$ with density $f_p(x) = \prod_{i=1}^p f(x) = \frac{1}{(2 \pi)^{p/2}} \exp \left(-\frac{1}{2} \left\Vert x \right\Vert^2 \right)$.
+Let $\left\Vert \cdot \right\Vert$ denote the $\ell^2$ (Euclidean) norm; we consider the Banach spaces $(\mathbb{R}^d, \left\Vert \cdot \right\Vert), (\mathbb{R}^k, \left\Vert \cdot \right\Vert)$ where $d > k$. Further, let $\mathcal{N}(0, 1)$ denote the standard normal distribution in $\mathbb{R}$ with density $f(x) = \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{x^2}{2} \right)$. Likewise let, $\mathcal{N}(\boldsymbol{0}, \mathbb{I}_p)$ denote the standard multivariate normal distribution in $\mathbb{R}^p$ with density $f_p(x) = \prod_{i=1}^p f(x) = \frac{1}{(2 \pi)^{p/2}} \exp \left(-\frac{1}{2} \left\Vert x \right\Vert^2 \right)$.
 
 \subsection{Problem Statement}
 
@@ -107,7 +107,7 @@ Consider the vectors $A_i \in \mathbb{R}^d$, $1 \le i \le k$, defined to have en
         \right]
 \end{align*}
 
-With this random matrix $\mathbb{A} \in \mathbb{R}^{k \times n}$, we construct the map $f: \mathbb{R}^d \rightarrow \mathbb{R}^k$ defined $f(x) := \frac{1}{\sqrt{k}}\mathbb{A}x$ for $x \in \mathbb{R}^d$.
+Using this random matrix $\mathbb{A} \in \mathbb{R}^{k \times d}$, we construct the map $f: \mathbb{R}^d \rightarrow \mathbb{R}^k$ defined $f(x) := \frac{1}{\sqrt{k}}\mathbb{A}x$ for $x \in \mathbb{R}^d$.
 
     \begin{figure}[H]
         \centering
@@ -123,7 +123,7 @@ With this random matrix $\mathbb{A} \in \mathbb{R}^{k \times n}$, we construct t
     Let $y := f(u) \in \mathbb{R}^k$. Then $y \sim \frac{\left \Vert u \right \Vert}{\sqrt{k}} Z$, where random vector $Z$ has density $\mathcal{N}(\boldsymbol{0}, \mathbb{I}_k).$
     \end{lemma}
     \begin{proof}
-    First, we note that $y_i = \frac{1}{\sqrt{k}} \mathbb{A}_{i,:}u = \sum_{j=1}^d \frac{1}{\sqrt{k}} \mathbb{A}_{i,j} u_j = \sum_{j=1}^d \left(\frac{u_j}{\sqrt{k}} \right) A_{i,j}$. Since $A_{i,1}, \ldots, A_{i,d} \overset{i.i.d.}{\sim} \mathcal{N}(0, 1)$ and each $\left(\frac{u_j}{\sqrt{k}} \right) \in \mathbb{R}$ is non-random, then $y_i$ is normally distributed. That is, $y_i$ is normally distributed since it is the sum of independent normally-distributed random variables. Further, because each $y_i$ is a function of $A_{i,1}, \ldots, A_{i,d}$ and $A_{i, j} \overset{i.i.d.}{\sim} \mathcal{N}(0, 1)$ for $1 \le i \le k$, $1 \le j \le d$ (i.e. both the rows and the columns of $\mathbb{A}$ are i.i.d. normal random variables), then we also have that $y_1, \ldots, y_k$ are independent and identically distributed. 
+    First, we note that $y_i = \frac{1}{\sqrt{k}} \mathbb{A}_{i,:}u = \sum_{j=1}^d \frac{1}{\sqrt{k}} \mathbb{A}_{i,j} u_j = \sum_{j=1}^d \left(\frac{u_j}{\sqrt{k}} \right) A_{i,j}$. Since $A_{i,1}, \ldots, A_{i,d} \overset{i.i.d.}{\sim} \mathcal{N}(0, 1)$ and each $\left(\frac{u_j}{\sqrt{k}} \right) \in \mathbb{R}$ is non-random, then $y_i$ is normally distributed. That is, $y_i$ is normally distributed since it is the sum of independent normally-distributed random variables. Further, because each $y_i$ is a function of $A_{i,1}, \ldots, A_{i,d}$ and $A_{i, j} \overset{i.i.d.}{\sim} \mathcal{N}(0, 1)$ for $1 \le i \le k$, $1 \le j \le d$ (i.e. both the rows and the columns of $\mathbb{A}$ are i.i.d. normal random variables), then we also have that $y_1, \ldots, y_k$ are independent and identically-distributed. 
     
     \noindent
     It is not in general true that each $y_i$ normally distributed implies that $y = (y_1, \ldots, y_k)$ has a multivariate normal distribution. Since each $y_1, \ldots, y_k$ is independent, however, this is, in fact, true. This is because each linear combination $a_1y_1 + \ldots + a_ky_k$ is normally distributed and so, by definition, $y$ has multivariate normal density. It remains to find the expectation and covariance matrix of multivariate normal random variable $y$. For the expectation, we have
@@ -134,10 +134,10 @@ With this random matrix $\mathbb{A} \in \mathbb{R}^{k \times n}$, we construct t
                         &= 0. &A_{i,j} \sim \mathcal{N}(0, 1)
     \end{align*}
     
-    Now for the covariance matrix of $y \in \mathbb{R}^k$, note that $y_i, y_j$ independent for $i \neq j$ implies $y_i, y_j$ uncorrelated. And since the $y_i$'s are identically distributed, then the covariance of $y$ is of the form $a\mathbb{I}_k$ for $a = \text{var}(y_i)$.
+    Now for the covariance matrix of $y \in \mathbb{R}^k$, note that $y_i, y_j$ independent for $i \neq j$ implies $y_i, y_j$ uncorrelated. And since the $y_i$'s are identically distributed, then the covariance matrix of $y$ is of the form $a\mathbb{I}_k$ for $a = \text{var}(y_i)$.
     \begin{align*}
         \text{var}(y_i) &= \text{var} \left( \sum_{j=1}^d \left(\frac{u_j}{\sqrt{k}} \right) A_{i,j} \right)\\
-                        &= \sum_{j=1}^d \text{var} \left(\frac{u_j}{\sqrt{k}}A_{i,j} \right) &\text{$A_{i,1}, \ldots, A_{i,d}$ independent}\\
+                        &= \sum_{j=1}^d \text{var} \left(\frac{u_j}{\sqrt{k}}A_{i,j} \right) &\text{$A_{i,1}, \ldots, A_{i,d}$ uncorrelated}\\
                         &= \sum_{j=1}^d \frac{u_j^2}{k} \text{var} \left(A_{i,j} \right) &\text{properties of variance}\\
                         &= \sum_{j=1}^d \frac{u_j^2}{k} &A_{i,j} \sim \mathcal{N}(0,1)\\
                         &= \frac{1}{k} \sum_{j=1}^d u_j^2\\
@@ -158,7 +158,7 @@ With this random matrix $\mathbb{A} \in \mathbb{R}^{k \times n}$, we construct t
          &= \frac{1}{k} \sum_{i=1}^k \mathbb{E} (u_1A_{i,1} + \ldots + u_dA_{i,d}) \cdot (u_1A_{i,1} + \ldots + u_dA_{i,d}).
      \end{align*}
      
-     Now, since $A_{i,k_1}, A_{i,k_2}$ are independent for $k_1 \neq k_2$, then $\mathbb{E}(u_{k_1}u_{k_2}A_{i,k_1}A_{i,k_2}) = u_{k_1}u_{k_2} \mathbb{E}(A_{i,k_1}A_{i,k_2}) = u_{k_1}u_{k_2} \mathbb{E}(A_{i,k_1})\mathbb{E}(A_{i,k_2}) = 0$ whenever $k_1 \neq k_2$. This allows us to simplify our expression for $\mathbb{E}(\left\Vert y \right\Vert^2)$:
+     Now, since $A_{i,k_1}, A_{i,k_2}$ are independent for $k_1 \neq k_2$, then $\mathbb{E}(u_{k_1}u_{k_2}A_{i,k_1}A_{i,k_2}) = u_{k_1}u_{k_2} \mathbb{E}(A_{i,k_1}A_{i,k_2}) = u_{k_1}u_{k_2} \mathbb{E}(A_{i,k_1})\mathbb{E}(A_{i,k_2}) = 0$ whenever $k_1 \neq k_2$ \cite{pollard_2001}. This allows us to simplify our expression for $\mathbb{E}(\left\Vert y \right\Vert^2)$:
      \begin{align*}
          &\frac{1}{k} \sum_{i=1}^k \mathbb{E} (u_1A_{i,1} + \ldots + u_dA_{i,d}) \cdot (u_1A_{i,1} + \ldots + u_dA_{i,d})\\
          &= \frac{1}{k} \sum_{i=1}^k \sum_{j=1}^d \mathbb{E}(u_j^2 A_{j,j}^2)\\
@@ -182,7 +182,7 @@ With this random matrix $\mathbb{A} \in \mathbb{R}^{k \times n}$, we construct t
 To substantiate our prior observation about the distribution of $\left \Vert y \right \Vert^2$, we show the following result:
 
 \begin{theorem}\label{thm:2}
-    Let $y:= f(u)$, where $f: \mathbb{R}^d \rightarrow \mathbb{R}^d$ is defined as above. Then we have that 
+    Let $y:= f(u)$, where $f: \mathbb{R}^d \rightarrow \mathbb{R}^k$ is defined as above. Then we have that 
     \begin{align*}
         \mathbb{P}\bigg[ \left\Vert y \right\Vert^2 \notin \left[(1 - \epsilon)\left\Vert u \right\Vert^2, (1 + \epsilon)\left\Vert u \right\Vert^2 \right] \bigg] \leq \frac{2}{n^2}.
     \end{align*}
@@ -255,7 +255,7 @@ Substituting in $\lambda = \frac{\epsilon}{2(1-\epsilon)}$, we get
 \begin{align*}
      \mathbb{P}\left[ \left\Vert y \right\Vert^2 \leq (1-\epsilon) \left\Vert u \right\Vert^2 \right] \leq \bigg( \frac{1}{\exp(-\epsilon)(1 - \epsilon)^{-1}} \bigg)^{k/2} = \bigg( \exp(\epsilon)(1 - \epsilon) \bigg)^{k/2} = \bigg( \exp(\epsilon + \log(1 - \epsilon)) \bigg)^{k/2}.
 \end{align*}
-Recall that $\log(1 - x)$ has the Taylor series expansion $- \sum_{n=1}^{\infty} \frac{x^n}{n}$ for $x \in [-1, 1)$. Since each term in the infinite sum is negative, then we can bound $\log(1 - x) = - \sum_{n=1}^{\infty} \frac{x^n}{n} \leq - x -x^2/2 \leq - x -x^2/2 + x^3/3$ for $x \in (0, 1)$. And so because $\epsilon \in (0,1)$, then we get that 
+Recall that $\log(1 - x)$ has Taylor series expansion $- \sum_{n=1}^{\infty} \frac{x^n}{n}$ for $x \in [-1, 1)$. Since each term in the infinite sum is negative, then we can bound $\log(1 - x) = - \sum_{n=1}^{\infty} \frac{x^n}{n} \leq - x -x^2/2 \leq - x -x^2/2 + x^3/3$ for $x \in (0, 1)$. And so because $\epsilon \in (0,1)$, then we get that 
 \begin{align*}
 \mathbb{P}\left[ \left\Vert y \right\Vert^2 \leq (1-\epsilon) \left\Vert u \right\Vert^2 \right] &\leq \bigg(\exp(\epsilon - \epsilon - \epsilon^2/2 + \epsilon^3/3) \bigg)^{k/2}\\
 & = \exp(-\epsilon^2/2 + \epsilon^3/3)^{k/2}.
@@ -288,8 +288,9 @@ Define $E_{i, j}$ to be the event that $x_i$ and $x_j$ satisfy the condition abo
 \end{align*}
 The probability of the event on the right-hand side of the equality satisfies
 \begin{align*}
-    \mathbb{P} \left[\bigcup_{ \{i, j\} \in \binom{[n]}{2}} E_{i, j} \right] \leq \sum_{ \{i, j\} \in \binom{[n]}{2}} \mathbb{P}(E_{i,j}) = \binom{n}{2} \frac{2}{n^2} = \frac{n-1}{n} = 1 - \frac{1}{n}.
+    \mathbb{P} \left[\bigcup_{ \{i, j\} \in \binom{[n]}{2}} E_{i, j} \right] \leq \sum_{ \{i, j\} \in \binom{[n]}{2}} \mathbb{P}(E_{i,j}) \leq \binom{n}{2} \frac{2}{n^2} = \frac{n-1}{n} = 1 - \frac{1}{n}
 \end{align*}
+by the subadditivity of probability \cite{pollard_2001}.
 
 And so
 \begin{align*}
@@ -384,7 +385,7 @@ From Figure 5 we observe a clear relationship between the runtime of the algorit
 \newpage
 \section{Johnson-Lindenstrauss vs Principal Components Analysis}
 
-Although most people are are familiar with dimension reduction through Principal Components Analysis (PCA), random projections are another useful tool to reduce the dimension of a dataset. As a reminder, Principal Components Analysis involves projecting the centered data matrix
+Although most people are familiar with dimension reduction through Principal Components Analysis (PCA), random projections are another useful tool to reduce the dimension of a dataset. As a reminder, Principal Components Analysis involves projecting the centered data matrix
 \begin{align*}
 \widetilde{\mathbb{X}} = 
         \left[
@@ -400,13 +401,13 @@ onto a $k$-dimensional subspace. In particular, each $\boldsymbol{x}_i - \boldsy
 
 In general PCA remains the best option, but dimensionality reduction through the Johnson–Lindenstrauss algorithm may have some legitimate use cases as well.
 
-For example, say we have a situation where we wish only to find the pairwise Euclidean distance between a large set of points with an extremely high dimensionality. This may be useful in situations such as the t-SNE embedding, a statistical method for visualizing high-dimensional data into two or three dimensions. In these situations, calculating pairwise distances with PCA would be prohibitively expensive due to the high-dimensionality of the data. This is not the case with random projections, as the Johnson–Lindenstrauss lemma guarantees the Euclidean distance within some error range \cite{stackoverflowpca}.
+For example, say we only wish to find the pairwise Euclidean distances between a large set of points with an extremely high dimensionality. This may be useful in situations such as the t-SNE embedding, a statistical method for visualizing high-dimensional data in two or three dimensions. In these situations, calculating pairwise distances with PCA would be prohibitively expensive due to the high-dimensionality of the data. This is not the case with random projections, as the Johnson–Lindenstrauss lemma guarantees that the Euclidean distance is preserved within some error range \cite{stackoverflowpca}.
 
 Specifically, we can consider the situation where we have a matrix of size $n \times d$. When projecting randomly, it requires $\mathcal{O}(ndk)$ operations to project on a subspace of dimension $k$. On the other hand, PCA takes $\mathcal{O}(d^2 \times n+d^3)$ operations \cite{stackoverflowpca}.
 
 Additional cases where random projection may be preferable include when the data matrix under consideration is extremely sparse, or when memory is an issue (because you do not need to hold the data in memory for random projections, as opposed to PCA).
 
-Overall, your use of dimensional reduction algorithm should depend on your specific needs. With a good understanding of the Johnson-Lindenstrauss lemma, we can add one more algorithm to our statistical toolkit.
+Overall, one's choice of a dimension reduction algorithm should depend on the particular problem under consideration. With a good understanding of the Johnson-Lindenstrauss lemma, we can add one more algorithm to our statistical toolkit.
 
 \section{Appendix}
     \subsection{Generating Numbers from a Standard Normal Distribution}\label{stdnorm}
